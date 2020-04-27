@@ -43,6 +43,7 @@ async function getEmojiDetails(uri) {
 
           let name = '';
           let imgUrl = '';
+          let searchKeys = '';
 
           $(elm.children).each(function (i, elm) {
 
@@ -51,6 +52,7 @@ async function getEmojiDetails(uri) {
             } else if ($(this).hasClass('name')) {
               name = $(this).text()
               code = ':' + $(this).text() + ':'
+              searchKeys = $(this).attr("data-alternative-name")
             }
           })
 
@@ -58,11 +60,13 @@ async function getEmojiDetails(uri) {
             name,
             imgUrl,
             code,
-            category
+            category,
+            searchKeys
           });
 
         });
       })
+      console.log('done')
       downloadImages();
       dataOutput();
     }).catch(function (e) {
